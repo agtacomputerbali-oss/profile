@@ -154,3 +154,17 @@ footer{padding:24px 32px 48px; font-family:'JetBrains Mono', monospace; font-siz
 
 .teaser-row{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:10px;}
 .teaser-link{font-family:'JetBrains Mono', monospace; font-size:12.5px; white-space:nowrap;}
+
+.avatar{
+  width:44px; height:44px; border-radius:50%; object-fit:cover;
+  border:1px solid var(--border); display:block; margin-bottom:10px;
+}
+.sidebar-header{display:flex; flex-direction:column;}
+@media (max-width:880px){
+  .sidebar-header{flex-direction:row; align-items:center; gap:10px;}
+  .avatar{margin-bottom:0;}
+}
+.motto{
+  font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-3);
+  font-style:italic; margin:0 0 28px;
+}
