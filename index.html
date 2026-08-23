@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gilbert Dany Naviri — Portofolio</title>
+<meta name="description" content="Software systems & remote execution — Gilbert Dany Naviri">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1e2e;
+    --bg-deep:#081522;
+    --panel:#0f2a3f;
+    --grid-line:rgba(79,168,216,0.14);
+    --grid-line-strong:rgba(79,168,216,0.28);
+    --cyan:#4fa8d8;
+    --cyan-bright:#7fc4ea;
+    --amber:#e8a33d;
+    --paper:#ece9de;
+    --ink:#f4f2ea;
+    --muted:#9fb4c4;
+    --muted-dim:#6b7f8f;
+    --radius:2px;
+    --maxw:1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--cyan-bright);}
+  ::selection{background:var(--amber); color:var(--bg-deep);}
+
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- Nav ---------- */
+  header.topnav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(8,21,34,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--grid-line-strong);
+  }
+  .topnav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.08em;
+    color:var(--muted);
+  }
+  .brand strong{color:var(--ink);}
+  nav.links{display:flex; gap:22px; font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.05em;}
+  nav.links a{color:var(--muted); text-decoration:none; text-transform:uppercase;}
+  nav.links a:hover{color:var(--cyan-bright);}
+  @media (max-width:640px){ nav.links{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:96px 0 72px;
+    position:relative;
+  }
+  .sheet-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--muted-dim);
+    letter-spacing:0.12em; text-transform:uppercase;
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:28px;
+  }
+  .sheet-label::before{
+    content:""; width:22px; height:1px; background:var(--muted-dim);
+  }
+  h1.title{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:700;
+    font-size:clamp(34px, 6vw, 58px);
+    line-height:1.08;
+    margin:0 0 18px;
+    color:var(--ink);
+  }
+  .title .accent{color:var(--amber);}
+  .tagline{
+    font-size:18px; color:var(--muted); max-width:520px; margin:0 0 40px;
+  }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:64px;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.04em;
+    text-decoration:none; padding:12px 20px; border-radius:var(--radius);
+    display:inline-block; transition:transform .15s ease, background .15s ease;
+  }
+  .btn.primary{background:var(--amber); color:var(--bg-deep); font-weight:600;}
+  .btn.primary:hover{transform:translateY(-2px);}
+  .btn.ghost{border:1px solid var(--grid-line-strong); color:var(--ink);}
+  .btn.ghost:hover{border-color:var(--cyan-bright); color:var(--cyan-bright);}
+
+  /* ---------- Diagram (signature element) ---------- */
+  .diagram-frame{
+    border:1px solid var(--grid-line-strong);
+    background:rgba(15,42,63,0.5);
+    padding:28px 20px 20px;
+    position:relative;
+  }
+  .diagram-frame .corner{
+    position:absolute; width:12px; height:12px;
+    border:1.5px solid var(--cyan);
+  }
+  .corner.tl{top:-1px; left:-1px; border-right:none; border-bottom:none;}
+  .corner.tr{top:-1px; right:-1px; border-left:none; border-bottom:none;}
+  .corner.bl{bottom:-1px; left:-1px; border-right:none; border-top:none;}
+  .corner.br{bottom:-1px; right:-1px; border-left:none; border-top:none;}
+  .diagram-caption{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-dim);
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:14px;
+  }
+  svg.diagram text{font-family:'IBM Plex Mono', monospace;}
+  .dash{stroke-dasharray:4 5; animation:march 1.6s linear infinite;}
+  @keyframes march{to{stroke-dashoffset:-18;}}
+
+  /* ---------- Sections ---------- */
+  section{padding:64px 0;}
+  .section-head{
+    display:flex; align-items:baseline; gap:16px; margin-bottom:36px;
+    border-bottom:1px solid var(--grid-line-strong); padding-bottom:16px;
+  }
+  .section-head .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted-dim);
+    letter-spacing:0.1em;
+  }
+  .section-head h2{
+    font-family:'IBM Plex Mono', monospace; font-size:22px; margin:0; color:var(--ink);
+    text-transform:uppercase; letter-spacing:0.03em;
+  }
+
+  p.lead{color:var(--muted); max-width:640px; font-size:16px;}
+
+  /* services */
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  @media (max-width:760px){ .grid-2{grid-template-columns:1fr;} }
+  .spec-card{
+    border:1px solid var(--grid-line-strong); background:rgba(15,42,63,0.4);
+    padding:24px; position:relative;
+  }
+  .spec-card .corner{position:absolute; width:10px; height:10px; border:1.5px solid var(--cyan);}
+  .spec-card h3{
+    font-family:'IBM Plex Mono', monospace; font-size:15px; text-transform:uppercase;
+    letter-spacing:0.05em; margin:0 0 6px; color:var(--amber);
+  }
+  .spec-card .sub{font-size:12px; color:var(--muted-dim); font-family:'IBM Plex Mono', monospace; margin-bottom:16px;}
+  .spec-card ul{margin:0; padding-left:18px; color:var(--muted);}
+  .spec-card li{margin-bottom:8px; font-size:14.5px;}
+
+  /* selected work */
+  .work-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:900px){ .work-grid{grid-template-columns:1fr;} }
+  .work-card{
+    border:1px solid var(--grid-line-strong); background:rgba(8,21,34,0.55);
+    padding:20px; position:relative; display:flex; flex-direction:column; gap:10px;
+  }
+  .work-card .corner{position:absolute; width:9px; height:9px; border:1.5px solid var(--muted-dim);}
+  .work-card .status{
+    align-self:flex-start; font-family:'IBM Plex Mono', monospace; font-size:10.5px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--cyan-bright);
+    border:1px solid var(--cyan); padding:2px 8px;
+  }
+  .work-card h4{margin:4px 0 0; font-size:17px; color:var(--ink);}
+  .work-card p{margin:0; font-size:13.5px; color:var(--muted);}
+  .fields{
+    margin-top:auto; padding-top:12px; border-top:1px dashed var(--grid-line-strong);
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-dim);
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .fields b{color:var(--muted);}
+  .placeholder-note{
+    margin-top:28px; font-family:'IBM Plex Mono', monospace; font-size:12px;
+    color:var(--muted-dim); border-left:2px solid var(--amber); padding-left:12px;
+  }
+
+  /* skills */
+  .tags{display:flex; flex-wrap:wrap; gap:10px;}
+  .tag-chip{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    border:1px solid var(--grid-line-strong); color:var(--muted);
+    padding:7px 12px; letter-spacing:0.02em;
+  }
+
+  /* contact */
+  .contact-panel{
+    border:1px solid var(--grid-line-strong); background:rgba(15,42,63,0.4);
+    padding:32px; display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; align-items:center;
+  }
+  .contact-list{display:flex; flex-direction:column; gap:10px;}
+  .contact-list a{color:var(--ink); text-decoration:none; font-size:15px;}
+  .contact-list a:hover{color:var(--amber);}
+  .contact-list .k{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-dim);
+    text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:2px;
+  }
+
+  footer{
+    padding:28px 0 48px; text-align:center;
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-dim);
+  }
+</style>
+</head>
+<body>
+
+<header class="topnav">
+  <div class="topnav-inner">
+    <div class="brand mono"><strong>GDN</strong> / portofolio</div>
+    <nav class="links">
+      <a href="#about">Tentang</a>
+      <a href="#services">Layanan</a>
+      <a href="#work">Proyek</a>
+      <a href="#skills">Skill</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="sheet-label">SHEET 01 / 05 — PROFILE</div>
+    <h1 class="title">Gilbert Dany Naviri<br><span class="accent">Sistem &amp; Eksekusi Remote.</span></h1>
+    <p class="tagline">Saya membangun software praktis untuk bisnis kecil — ERP, POS, dashboard — dan mengerjakan tugas remote/freelance secara cepat dan rapi. Satu orang, dua jalur kerja.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#work">Lihat Proyek</a>
+      <a class="btn ghost" href="#contact">Hubungi Saya</a>
+    </div>
+
+    <div class="diagram-frame">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="diagram-caption">FIG. 1 — ALUR KERJA</div>
+      <svg class="diagram" viewBox="0 0 760 160" width="100%" height="auto" role="img" aria-label="Diagram dua jalur kerja: Software Systems dan Remote Execution, terhubung melalui Gilbert Dany Naviri">
+        <!-- left node -->
+        <rect x="20" y="55" width="190" height="50" fill="none" stroke="#4fa8d8" stroke-width="1.2"/>
+        <text x="115" y="76" fill="#f4f2ea" font-size="12" text-anchor="middle" font-weight="600">SOFTWARE SYSTEMS</text>
+        <text x="115" y="93" fill="#9fb4c4" font-size="9.5" text-anchor="middle">ERP · POS · DASHBOARD</text>
+
+        <!-- center node -->
+        <rect x="300" y="40" width="160" height="80" fill="none" stroke="#e8a33d" stroke-width="1.4"/>
+        <text x="380" y="75" fill="#f4f2ea" font-size="11.5" text-anchor="middle" font-weight="700">GILBERT</text>
+        <text x="380" y="91" fill="#e8a33d" font-size="9.5" text-anchor="middle">EKSEKUTOR</text>
+
+        <!-- right node -->
+        <rect x="550" y="55" width="190" height="50" fill="none" stroke="#4fa8d8" stroke-width="1.2"/>
+        <text x="645" y="76" fill="#f4f2ea" font-size="12" text-anchor="middle" font-weight="600">REMOTE EXECUTION</text>
+        <text x="645" y="93" fill="#9fb4c4" font-size="9.5" text-anchor="middle">DATA · VA · CONTENT</text>
+
+        <!-- connectors -->
+        <line x1="210" y1="80" x2="300" y2="80" stroke="#4fa8d8" stroke-width="1.2" class="dash"/>
+        <line x1="460" y1="80" x2="550" y2="80" stroke="#4fa8d8" stroke-width="1.2" class="dash"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head"><span class="tag mono">§01</span><h2>Tentang</h2></div>
+    <p class="lead">
+      [Tulis 2–3 kalimat di sini: latar belakang singkat, jenis proyek yang biasa dikerjakan, dan gaya kerja.
+      Contoh: "Saya mengerjakan sistem internal untuk bisnis kecil-menengah — mulai dari pencatatan stok,
+      kasir, sampai laporan keuangan — sambil tetap terbuka untuk pekerjaan remote harian seperti data entry,
+      riset, dan penulisan berbantuan AI."]
+    </p>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-head"><span class="tag mono">§02</span><h2>Layanan</h2></div>
+    <div class="grid-2">
+      <div class="spec-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <h3>Software &amp; Sistem</h3>
+        <div class="sub mono">BUILD · MAINTAIN · DEPLOY</div>
+        <ul>
+          <li>Aplikasi ERP untuk operasional bisnis kecil</li>
+          <li>Sistem POS &amp; invoicing</li>
+          <li>Dashboard keuangan / laporan</li>
+          <li>Perbaikan &amp; maintenance aplikasi yang sudah ada</li>
+        </ul>
+      </div>
+      <div class="spec-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <h3>Remote &amp; Freelance Support</h3>
+        <div class="sub mono">EXECUTE · DELIVER · REPEAT</div>
+        <ul>
+          <li>Data entry &amp; pembersihan data</li>
+          <li>Virtual assistant (jadwal, email, riset ringan)</li>
+          <li>Penulisan konten berbantuan AI (artikel, deskripsi produk)</li>
+          <li>Upload &amp; pengelolaan listing produk</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section id="work">
+    <div class="section-head"><span class="tag mono">§03</span><h2>Proyek Terpilih</h2></div>
+    <p class="lead">Template di bawah ini siap diisi dengan proyekmu — ganti judul, deskripsi, dan tautan repo/demo.</p>
+
+    <div class="work-grid">
+      <div class="work-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <span class="status mono">TEMPLATE</span>
+        <h4>Sistem ERP Retail</h4>
+        <p>[Deskripsi singkat: masalah yang diselesaikan, siapa penggunanya.]</p>
+        <div class="fields">
+          <div><b>STACK</b>: —</div>
+          <div><b>ROLE</b>: —</div>
+          <div><b>LINK</b>: <a href="#">github.com/username/repo</a></div>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <span class="status mono">TEMPLATE</span>
+        <h4>POS &amp; Invoicing App</h4>
+        <p>[Deskripsi singkat: fitur utama, hasil yang dicapai.]</p>
+        <div class="fields">
+          <div><b>STACK</b>: —</div>
+          <div><b>ROLE</b>: —</div>
+          <div><b>LINK</b>: <a href="#">github.com/username/repo</a></div>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <span class="status mono">TEMPLATE</span>
+        <h4>Dashboard Keuangan</h4>
+        <p>[Deskripsi singkat: data apa yang divisualisasikan, untuk siapa.]</p>
+        <div class="fields">
+          <div><b>STACK</b>: —</div>
+          <div><b>ROLE</b>: —</div>
+          <div><b>LINK</b>: <a href="#">github.com/username/repo</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="placeholder-note">CATATAN: ketiga kartu di atas adalah placeholder — isi dengan proyek nyata dari GitHub-mu begitu siap.</div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head"><span class="tag mono">§04</span><h2>Skill</h2></div>
+    <div class="tags">
+      <span class="tag-chip">JavaScript</span>
+      <span class="tag-chip">Python</span>
+      <span class="tag-chip">SQL / Database</span>
+      <span class="tag-chip">Git &amp; GitHub</span>
+      <span class="tag-chip">Data Entry</span>
+      <span class="tag-chip">Riset &amp; Virtual Assistant</span>
+      <span class="tag-chip">Penulisan Konten (AI-assisted)</span>
+      <span class="tag-chip">[tambah skill lain]</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-head"><span class="tag mono">§05</span><h2>Kontak</h2></div>
+    <div class="contact-panel">
+      <div class="contact-list">
+        <div><span class="k">Email</span><a href="mailto:email@example.com">email@example.com</a></div>
+        <div><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/gilbertdn0522/" target="_blank" rel="noopener">linkedin.com/in/gilbertdn0522</a></div>
+        <div><span class="k">GitHub</span><a href="#" target="_blank" rel="noopener">github.com/username</a></div>
+      </div>
+      <a class="btn primary" href="mailto:email@example.com">Kirim Email</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  SHEET 05 / 05 — © <span id="year"></span> Gilbert Dany Naviri
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
